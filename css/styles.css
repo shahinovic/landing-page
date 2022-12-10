@@ -1,0 +1,567 @@
+/*
+ *
+ * CSS written based on SMACSS architecture.
+ * To learn more, visit: http://smacss.com/
+ * 
+ * For simplicity, no reset or normalize is added. 
+ * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
+ *
+*/
+
+/* ---- Base Rules ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --hover-color: rgb(204, 204, 17);
+}
+
+body {
+  background: rgb(136, 203, 171);
+  background: linear-gradient(0deg, rgba(136, 203, 171, 1) 0%, rgba(0, 13, 60, 1) 100%);
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  color: #fff;
+  overflow-x: hidden;
+  /* position: relative; */
+}
+
+body::before {
+  content: '';
+  background: rgba(255, 255, 255, 0.22);
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  /* transform: translate(-50%, -50%); */
+  z-index: 5;
+  width: 70vh;
+  height: 70vh;
+  border-radius: 50%;
+  opacity: 1;
+  transition: ease 0.5s all;
+  animation: rotate 4s linear 0s infinite forwards;
+}
+
+body::after {
+  content: '';
+  background: rgba(255, 255, 255, 0.372);
+  position: absolute;
+  top: 50px;
+  right: 300px;
+  z-index: 5;
+  width: 30vh;
+  height: 30vh;
+  border-radius: 50%;
+  opacity: 1;
+  transition: ease 0.5s all;
+  animation: rotate 4s linear 0s infinite forwards reverse;
+}
+
+/* Typeography General*/
+h1 {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 3em;
+  margin: 2em 1rem;
+}
+
+@media only screen and (min-width: 35em) {
+  h1 {
+    font-size: 7em;
+    margin: 2em 4rem 1em;
+  }
+}
+
+h2 {
+  border-bottom: 1px solid #cc1;
+  font-family: 'Oxygen', Sans-Serif;
+  font-size: 3em;
+  color: #fff;
+}
+
+p {
+  line-height: 1.6em;
+  color: #eee;
+}
+
+button,
+a {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0px;
+  height: 50px;
+  border-width: 0;
+  background: none;
+  color: White;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: inherit;
+  text-decoration: none;
+  line-height: 50px;
+  cursor: pointer;
+  font-size: 100%;
+  position: relative;
+  overflow: hidden;
+  transition-delay: 0.5s !important;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* ---- Layout Rules ---- */
+
+.main-hero {
+  min-height: 40vh;
+  padding-top: 3em;
+}
+
+.main__hero h1 {
+  font-size: clamp(3rem, 9.5vw, 10rem);
+}
+
+section {
+  position: relative;
+  min-height: 90vh;
+  width: 90vw;
+  opacity: 0;
+  margin-bottom: 50px;
+  filter: blur(5px);
+  transition: 1s ease;
+}
+section:nth-of-type(even) {
+  transform: translateX(100%);
+  border-radius: 50px;
+}
+
+section:nth-of-type(odd) {
+  transform: translateX(-100%);
+}
+
+#navbar__list .menu__link {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+  padding: 3px 10px !important;
+  color: var(--hover-color);
+  border: 1px solid #cccc117c;
+  text-transform: capitalize;
+  text-decoration: none;
+  overflow: hidden;
+  transition: 0.5s ease;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+ul.open .menu__link {
+  width: 100% !important;
+}
+
+.btn-hover:hover,
+.btn-hover.active {
+  color: black !important;
+  background: var(--hover-color);
+  box-shadow: 0 0 10px var(--hover-color), 0 0 60px var(--hover-color);
+  transition-delay: 1s;
+}
+
+.btn-hover span {
+  position: absolute;
+  display: block;
+}
+
+.btn-hover span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hover-color));
+}
+
+.btn-hover:hover span:nth-child(1),
+.btn-hover.active span:nth-child(1) {
+  left: 100%;
+  transition: 0.5s;
+}
+
+.btn-hover span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, var(--hover-color));
+}
+
+.btn-hover:hover span:nth-child(3),
+.btn-hover.active span:nth-child(3) {
+  right: 100%;
+  transition: 0.5s;
+  transition-delay: 0.25s;
+}
+
+.btn-hover span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--hover-color));
+}
+
+.btn-hover:hover span:nth-child(2),
+.btn-hover.active span:nth-child(2) {
+  top: 100%;
+  transition: 0.5s;
+  transition-delay: 0.125s;
+}
+
+.btn-hover span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, var(--hover-color));
+}
+
+.btn-hover:hover span:nth-child(4),
+.btn-hover.active span:nth-child(4) {
+  bottom: 100%;
+  transition: 0.5s;
+  transition-delay: 0.375s;
+}
+
+/* ---- Module Rules ---- */
+
+/* Navigation Styles*/
+.navbar__menu {
+  width: 100vw;
+  height: 55px;
+  background: linear-gradient(153deg, rgba(255, 255, 255, 0.408), rgba(255, 255, 255, 0.219));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.245);
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.navbar__menu .navbar__logo {
+  height: 90%;
+  padding: 0 15px;
+  border-radius: 7px;
+  color: #cc1;
+  user-select: none;
+  display: grid;
+  place-items: center;
+  text-transform: uppercase;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  font-size: clamp(2rem, 10.5vw, 2.5rem);
+}
+
+#toggler {
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #cc1 !important;
+  border-radius: 7px;
+  transition: 0.3s ease;
+  /* overflow: hidden; */
+}
+
+@media (min-width: 768px) {
+  #toggler {
+    display: none;
+  }
+}
+
+#toggler:hover {
+  box-shadow: 0 0 3px #cc1, 0 0 6px #cc1;
+}
+#toggler .bar {
+  display: flex;
+  width: 70%;
+  height: 4px;
+  background-color: #cc1 !important;
+  border-radius: 50px;
+  transition: inherit;
+}
+
+#toggler .bar:nth-child(1) {
+  transform: translateX(1px);
+}
+
+#toggler .bar:nth-child(2) {
+  transform: translateX(-2px);
+}
+
+#toggler .bar:nth-child(3) {
+  transform: translateX(1px);
+}
+
+#toggler:hover .bar:nth-child(1),
+#toggler:hover .bar:nth-child(2),
+#toggler:hover .bar:nth-child(3) {
+  transform: translateX(0);
+  box-shadow: 0 0 10px #cc1, 0 0 15px #cc1;
+}
+
+button.close .bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg) !important;
+}
+
+button.close .bar:nth-child(2) {
+  transform: translateX(60px) !important;
+}
+
+button.close .bar:nth-child(3) {
+  transform: translateY(-10px) rotate(315deg) !important;
+}
+
+#navbar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  justify-content: end;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  #navbar__list {
+    display: flex;
+  }
+}
+
+ul.open {
+  border: 1px solid transparent;
+  border-right-color: #cc1;
+  border-left-color: #cc1;
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 150%;
+  right: 10px;
+  row-gap: 15px;
+  padding: 10px 0;
+  width: 200px;
+}
+
+ul.open::before {
+  content: '';
+  position: inherit;
+  top: -25px;
+  right: 10px;
+  /* transform: translate(-50%, -50%); */
+  border: 10px solid transparent;
+  border-bottom-color: #cc1;
+  /* background-color: red; */
+}
+
+#navbar__list li {
+  display: inline-block;
+  margin-right: 10px;
+}
+ul.open li {
+  margin: 0 !important;
+  width: 90%;
+}
+
+ul.open .menu__link {
+  width: 100% !important;
+}
+
+/* Header Styles */
+.page__header {
+  /* background: #fff; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  transition: 0.3s ease;
+}
+
+/* Footer Styles */
+.page__footer {
+  background: #000;
+  padding: 3em;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .page__footer {
+    flex-direction: column;
+  }
+}
+
+.page__footer p {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.page__footer p a {
+  color: #cc1;
+  font-weight: bold;
+}
+
+/* ---- Theme Rules ---- */
+/* Landing Container Styles */
+.landing__container {
+  padding: 1em;
+  text-align: left;
+  height: 100%;
+}
+
+.landing__container h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+.landing__container p:not(:last-child) {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cc1;
+  margin-bottom: 20px;
+}
+
+.landing__container a {
+  padding: 15px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(204, 204, 17, 0.71);
+}
+
+@media only screen and (min-width: 35em) {
+  .landing__container {
+    max-width: 50em;
+    padding: 4em;
+  }
+}
+
+section:nth-of-type(even) .landing__container {
+  margin-right: 0;
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Background Circles */
+/* Note that background circles are created with psuedo elements before and after */
+/* Circles appear to be random do to use of :nth-of-type psuedo class */
+section:nth-of-type(odd) .landing__container::before {
+  content: '';
+  background: rgba(255, 255, 255, 0.187);
+  position: absolute;
+  z-index: -5;
+  width: 20vh;
+  height: 20vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+section:nth-of-type(even) .landing__container::before {
+  content: '';
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  position: absolute;
+  top: 3em;
+  right: 3em;
+  z-index: -5;
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n) .landing__container::after {
+  content: '';
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -5;
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n + 1) .landing__container::after {
+  content: '';
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  position: absolute;
+  right: 20vw;
+  bottom: -5em;
+  z-index: -5;
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+/* ---- Theme State Rules ---- */
+/* Section Active Styles */
+/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
+section.your-active-class {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  opacity: 1;
+  filter: blur(0);
+}
+
+section:nth-of-type(even).your-active-class {
+  transform: translateX(5vh);
+}
+
+section:nth-of-type(odd).your-active-class {
+  transform: translateX(0vh);
+}
+
+section.your-active-class .landing__container::before {
+  opacity: 1;
+  animation: rotate 4s linear 0s infinite forwards;
+}
+
+section.your-active-class .landing__container::after {
+  opacity: 1;
+  animation: rotate 5s linear 0s infinite forwards reverse;
+}
+
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) translate(-1em) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translate(-1em) rotate(-360deg);
+  }
+}
+
+@keyframes show {
+  100% {
+    top: 0;
+  }
+}
