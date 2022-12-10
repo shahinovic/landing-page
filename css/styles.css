@@ -132,10 +132,10 @@ section {
   margin-bottom: 50px;
   filter: blur(5px);
   transition: 1s ease;
+  border-radius: 50px;
 }
 section:nth-of-type(even) {
   transform: translateX(100%);
-  border-radius: 50px;
 }
 
 section:nth-of-type(odd) {
