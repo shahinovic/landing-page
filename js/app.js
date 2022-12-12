@@ -1,7 +1,30 @@
 const header = document.querySelector('.page__header'),
   list = document.querySelector('#navbar__list'),
   sections = Array.from(document.querySelectorAll('section')),
-  toggler = document.createElement('button');
+  toggler = document.createElement('button'),
+  svg = `<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_2_46)">
+  <path d="M21.2211 0.893066L24 3.92465L12.1263 15.7983L0 3.92465L3.03158 0.893066L12.1263 9.9878L21.2211 0.893066Z" fill="white"/>
+  </g>
+  <defs>
+  <clipPath id="clip0_2_46">
+  <rect width="24" height="24" fill="white" transform="translate(0 0.893066)"/>
+  </clipPath>
+  </defs>
+  </svg>
+  `,
+  spans = `<span></span><span></span><span></span><span></span>`,
+  collapsedH2 = document.querySelectorAll('.landing__container h2'),
+  btnHover = document.querySelectorAll('.btn-hover');
+
+window.addEventListener('load', () => {
+  btnHover.forEach((ele) => {
+    ele.innerHTML += spans;
+  });
+  collapsedH2.forEach((ele) => {
+    ele.innerHTML += svg;
+  });
+});
 
 let scroller = (e) => {
   e.preventDefault();
@@ -83,3 +106,9 @@ window.addEventListener(
 window.onscroll = () => {
   document.querySelector('header').style = 'transform: translateY(0);';
 };
+
+Array.from(collapsedH2).map((ele) => {
+  ele.addEventListener('click', () => {
+    ele.parentElement.classList.toggle('collapse');
+  });
+});

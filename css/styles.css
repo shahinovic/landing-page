@@ -35,7 +35,7 @@ body::before {
   top: -100px;
   right: -100px;
   /* transform: translate(-50%, -50%); */
-  z-index: 5;
+  z-index: 1;
   width: 70vh;
   height: 70vh;
   border-radius: 50%;
@@ -50,7 +50,7 @@ body::after {
   position: absolute;
   top: 50px;
   right: 300px;
-  z-index: 5;
+  z-index: 1;
   width: 30vh;
   height: 30vh;
   border-radius: 50%;
@@ -126,13 +126,15 @@ button::-moz-focus-inner {
 
 section {
   position: relative;
-  min-height: 90vh;
+  min-height: fit-content;
+  max-height: 1000vh;
   width: 90vw;
   opacity: 0;
   margin-bottom: 50px;
   filter: blur(5px);
   transition: 1s ease;
   border-radius: 50px;
+  z-index: 2;
 }
 section:nth-of-type(even) {
   transform: translateX(100%);
@@ -431,14 +433,49 @@ ul.open .menu__link {
 }
 
 .landing__container h2 {
+  position: relative;
+  overflow: hidden;
   font-size: clamp(2rem, 5vw, 3rem);
-  padding: 10px 0;
+  padding: 10px 15px;
   margin-bottom: 30px;
+  width: 100% !;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
-.landing__container p:not(:last-child) {
+.landing__container h2 svg {
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: 0.5s ease;
+}
+
+.landing__container.collapse h2 svg {
+  transform: translateY(4px) rotate(-90deg);
+}
+
+.landing__container .landing__container p:not(:last-child) {
   padding-bottom: 10px;
   border-bottom: 1px solid #cc1;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.landing__container p {
+  font-size: clamp(0.6em, 2vw, 1rem);
+  min-height: 40vh;
+  opacity: 1;
+  max-height: fit-content;
+  visibility: visible;
+  transition: 0.5s ease;
+  overflow: hidden;
+}
+.landing__container.collapse p {
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  max-height: 0;
+  visibility: hidden;
 }
 
 .landing__container a {
@@ -447,6 +484,11 @@ ul.open .menu__link {
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(204, 204, 17, 0.71);
+}
+
+.landing__container.collapse a {
+  padding: 0;
+  display: none;
 }
 
 @media only screen and (min-width: 35em) {
