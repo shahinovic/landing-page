@@ -26,7 +26,9 @@ body {
   color: #fff;
   overflow-x: hidden;
 }
-
+main {
+  overflow: hidden;
+}
 /* Typeography General*/
 @media (max-width: 600px) {
   section .landing__container {
