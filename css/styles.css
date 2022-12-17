@@ -608,7 +608,7 @@ section.your-active-class {
 }
 
 section:nth-of-type(even).your-active-class {
-  transform: translateX(5vh);
+  transform: translateX(3vh);
 }
 
 section:nth-of-type(odd).your-active-class {
