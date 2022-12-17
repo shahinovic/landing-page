@@ -25,7 +25,6 @@ body {
   font-family: 'Merriweather', serif;
   color: #fff;
   overflow-x: hidden;
-  /* position: relative; */
 }
 
 body::before {
@@ -34,7 +33,6 @@ body::before {
   position: absolute;
   top: -100px;
   right: -100px;
-  /* transform: translate(-50%, -50%); */
   z-index: 1;
   width: 70vh;
   height: 70vh;
@@ -60,6 +58,38 @@ body::after {
 }
 
 /* Typeography General*/
+@media (max-width: 600px) {
+  section .landing__container {
+    width: 90% !important;
+    padding: 20px;
+  }
+  .page__footer {
+    flex-direction: column;
+  }
+  .page__footer p {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 800px) {
+  section .landing__container {
+    max-width: 780px !important;
+  }
+}
+
+@media (min-width: 1000px) {
+  section .landing__container {
+    max-width: 980px !important;
+  }
+}
+
+@media (min-width: 1250px) {
+  section .landing__container {
+    max-width: 1200px !important;
+  }
+}
 h1 {
   font-family: 'Fira Sans', sans-serif;
   font-size: 3em;
@@ -128,7 +158,7 @@ section {
   position: relative;
   min-height: fit-content;
   max-height: 1000vh;
-  width: 90vw;
+  width: 95vw;
   opacity: 0;
   margin-bottom: 50px;
   filter: blur(5px);
@@ -438,7 +468,6 @@ ul.open .menu__link {
   font-size: clamp(2rem, 5vw, 3rem);
   padding: 10px 15px;
   margin-bottom: 30px;
-  width: 100% !;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -462,7 +491,7 @@ ul.open .menu__link {
 
 .landing__container p {
   font-size: clamp(0.6em, 2vw, 1rem);
-  min-height: 40vh;
+  margin-bottom: 30px;
   opacity: 1;
   max-height: fit-content;
   visibility: visible;
@@ -478,24 +507,24 @@ ul.open .menu__link {
   visibility: hidden;
 }
 
+@media (max-width: 400px) {
+  .landing__container p {
+    height: 200px !important;
+    overflow: hidden;
+  }
+}
 .landing__container a {
   padding: 15px 30px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: clamp(0.8em, 3vw, 2em);
   border: 1px solid rgba(204, 204, 17, 0.71);
 }
 
 .landing__container.collapse a {
   padding: 0;
   display: none;
-}
-
-@media only screen and (min-width: 35em) {
-  .landing__container {
-    max-width: 50em;
-    padding: 4em;
-  }
 }
 
 section:nth-of-type(even) .landing__container {
